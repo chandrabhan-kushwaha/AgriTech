@@ -8,12 +8,15 @@ const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const connectDB = require('./config/db');
 const { notFound, errorHandler } = require('./middleware/errorMiddleware');
+const { autoSeedIfEmpty, seedDatabase } = require('./seeds/seedData');
 
 // Load environment variables
 dotenv.config();
 
-// Connect to MongoDB
-connectDB();
+// Connect to MongoDB and auto-seed if newly deployed / empty
+connectDB().then(() => {
+  autoSeedIfEmpty();
+});
 
 const app = express();
 
@@ -60,6 +63,16 @@ app.get('/api/health', (req, res) => {
     },
     version: '1.0.0',
   });
+});
+
+// Manual database seeding endpoint for production initialization
+app.get('/api/seed', async (req, res) => {
+  try {
+    const result = await seedDatabase();
+    res.json({ success: true, message: 'Cloud database seeded successfully with demo data!', data: result });
+  } catch (err) {
+    res.status(500).json({ success: false, message: 'Database seeding failed', error: err.message });
+  }
 });
 
 // API Routes

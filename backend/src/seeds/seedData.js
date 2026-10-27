@@ -381,11 +381,32 @@ const seedDatabase = async () => {
     });
 
     console.log('[Seeder] Database seeding completed successfully!');
-    process.exit(0);
+    return { success: true, message: 'Database seeded successfully' };
   } catch (error) {
     console.error('[Seeder Error]', error);
-    process.exit(1);
+    throw error;
   }
 };
 
-seedDatabase();
+const autoSeedIfEmpty = async () => {
+  try {
+    const userCount = await User.countDocuments();
+    if (userCount === 0) {
+      console.log('[Auto-Seed] No users found in database. Initializing cloud database with demo data...');
+      await seedDatabase();
+      console.log('[Auto-Seed] Initial data population completed!');
+    } else {
+      console.log(`[Auto-Seed] Database already has ${userCount} users. Skipping auto-seed.`);
+    }
+  } catch (err) {
+    console.error('[Auto-Seed Warning] Could not check or auto-seed database:', err.message);
+  }
+};
+
+if (require.main === module) {
+  seedDatabase()
+    .then(() => process.exit(0))
+    .catch(() => process.exit(1));
+}
+
+module.exports = { seedDatabase, autoSeedIfEmpty };
