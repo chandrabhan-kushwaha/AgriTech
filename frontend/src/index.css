@@ -1,0 +1,414 @@
+:root {
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+  
+  --color-primary: #10b981;
+  --color-primary-dark: #059669;
+  --color-primary-light: #34d399;
+  --color-forest: #0d3824;
+  --color-deep-bg: #09150f;
+  --color-surface-dark: #12221a;
+  --color-card-dark: #162b20;
+  
+  --color-amber: #f59e0b;
+  --color-amber-dark: #d97706;
+  --color-blue: #0ea5e9;
+  --color-red: #ef4444;
+  
+  --color-bg-light: #f8faf9;
+  --color-card-light: #ffffff;
+  --color-border: #e2e8f0;
+  --color-text-main: #1e293b;
+  --color-text-muted: #64748b;
+  
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+  
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 8px 24px rgba(16, 185, 129, 0.08), 0 4px 12px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 16px 36px rgba(16, 185, 129, 0.12), 0 8px 16px rgba(0, 0, 0, 0.06);
+  --shadow-glow: 0 0 25px rgba(16, 185, 129, 0.35);
+  
+  --transition-fast: 0.18s ease-in-out;
+  --transition-normal: 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg-light);
+  color: var(--color-text-main);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Glassmorphism & Cards */
+.agri-card {
+  background: var(--color-card-light);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.agri-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.agri-card-dark {
+  background: linear-gradient(145deg, #12231b 0%, #0c1813 100%);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  color: #f1f5f9;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.agri-glass {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+/* Buttons */
+.agri-btn-primary {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff;
+  border: none;
+  font-weight: 600;
+  padding: 0.65rem 1.4rem;
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+}
+
+.agri-btn-primary:hover {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.45);
+}
+
+.agri-btn-secondary {
+  background: #f1f5f9;
+  color: #1e293b;
+  border: 1px solid #cbd5e1;
+  font-weight: 600;
+  padding: 0.65rem 1.25rem;
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.agri-btn-secondary:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.agri-btn-outline {
+  background: transparent;
+  color: var(--color-primary-dark);
+  border: 1.5px solid var(--color-primary);
+  font-weight: 600;
+  padding: 0.55rem 1.2rem;
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.agri-btn-outline:hover {
+  background: var(--color-primary);
+  color: #ffffff;
+}
+
+/* Gradients & Accents */
+.agri-gradient-text {
+  background: linear-gradient(135deg, #10b981 0%, #047857 60%, #064e3b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.agri-gradient-header {
+  background: radial-gradient(circle at 10% 20%, rgba(16, 185, 129, 0.12) 0%, rgba(245, 158, 11, 0.05) 50%, transparent 80%),
+              linear-gradient(135deg, #071c12 0%, #0f3622 100%);
+  color: #ffffff;
+  padding: 3.5rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Badges */
+.agri-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-full);
+}
+
+.badge-optimal {
+  background: #dcfce7;
+  color: #15803d;
+  border: 1px solid #bbf7d0;
+}
+
+.badge-warning {
+  background: #fef3c7;
+  color: #b45309;
+  border: 1px solid #fde68a;
+}
+
+.badge-critical {
+  background: #fee2e2;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+}
+
+.badge-info {
+  background: #e0f2fe;
+  color: #0369a1;
+  border: 1px solid #bae6fd;
+}
+
+/* Navbar */
+.agri-navbar {
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+  position: sticky;
+  top: 0;
+  z-index: 1040;
+  transition: all var(--transition-normal);
+}
+
+.agri-nav-link {
+  color: #475569;
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 0.5rem 0.85rem !important;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all var(--transition-fast);
+}
+
+.agri-nav-link:hover, .agri-nav-link.active {
+  color: var(--color-primary-dark) !important;
+  background-color: #ecfdf5;
+}
+
+/* Stat Widgets */
+.stat-widget {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.4rem;
+  background: #ffffff;
+  border-radius: var(--radius-md);
+  border: 1px solid #e2e8f0;
+  box-shadow: var(--shadow-sm);
+}
+
+.stat-icon-wrapper {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Progress bar modern */
+.agri-progress {
+  height: 10px;
+  border-radius: var(--radius-full);
+  background-color: #e2e8f0;
+  overflow: hidden;
+}
+
+.agri-progress-bar {
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: linear-gradient(90deg, #10b981 0%, #34d399 100%);
+  transition: width 0.6s ease;
+}
+
+/* Modal styling */
+.modal-content {
+  border-radius: var(--radius-lg);
+  border: none;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+.modal-header {
+  border-bottom: 1px solid #f1f5f9;
+  padding: 1.25rem 1.75rem;
+  background: #f8faf9;
+}
+
+.modal-body {
+  padding: 1.75rem;
+}
+
+.modal-footer {
+  border-top: 1px solid #f1f5f9;
+  padding: 1rem 1.75rem;
+  background: #f8faf9;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Micro UI Polish & Input Focus */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+}
+
+.agri-btn-primary:active, .agri-btn-secondary:active, .agri-btn-outline:active {
+  transform: scale(0.98);
+}
+
+/* Mobile Responsiveness & Breakpoint Refinements */
+@media (max-width: 991.98px) {
+  .agri-gradient-header {
+    padding: 2.25rem 0;
+  }
+
+  .agri-navbar .navbar-collapse {
+    background: #ffffff;
+    border-radius: var(--radius-md);
+    padding: 1rem;
+    margin-top: 0.75rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+  }
+
+  .agri-nav-link {
+    padding: 0.65rem 0.85rem !important;
+    font-size: 0.92rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .display-3 {
+    font-size: 2.35rem !important;
+  }
+  .display-4 {
+    font-size: 1.95rem !important;
+    line-height: 1.25 !important;
+  }
+  .display-6 {
+    font-size: 1.45rem !important;
+  }
+
+  .agri-card {
+    padding: 1.15rem;
+  }
+
+  .stat-widget {
+    padding: 1rem;
+    gap: 0.85rem;
+  }
+
+  .stat-icon-wrapper {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+  }
+
+  .stat-widget h3 {
+    font-size: 1.35rem;
+  }
+
+  .modal-dialog {
+    margin: 0.5rem;
+  }
+  .modal-body {
+    padding: 1.25rem;
+  }
+
+  .table-responsive {
+    border-radius: var(--radius-sm);
+    box-shadow: inset -1px 0 0 rgba(0,0,0,0.05);
+  }
+}
+
+@media (max-width: 575.98px) {
+  .display-4 {
+    font-size: 1.7rem !important;
+  }
+
+  .agri-btn-primary, .agri-btn-secondary, .agri-btn-outline {
+    font-size: 0.88rem;
+    padding: 0.55rem 1rem;
+  }
+}

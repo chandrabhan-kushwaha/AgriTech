@@ -1,0 +1,28 @@
+services:
+  agritech-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: agritech-app
+    restart: always
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=production
+      - PORT=5000
+      - MONGODB_URI=mongodb://mongo:27017/agritech
+      - JWT_SECRET=agritech_production_super_secure_jwt_secret_key_2026
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:7-jammy
+    container_name: agritech-mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  mongo_data:
